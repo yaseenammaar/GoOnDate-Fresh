@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import logo from './logo.svg';
 import './App.css';
 import {
   ThemeProvider,
@@ -17,8 +16,6 @@ import {
   Anchor
 } from "react-atomize";
 
-
-
 const theme = {
   ...DefaultTheme,
   grid: {
@@ -28,17 +25,48 @@ const theme = {
   }
 };
 
+var key;
 
-
-
-
+  
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
+  
+    const [isOpen, setIsOpen] = useState(false);
+    const [keyText, setKeyText] = useState("");
+    const [textMessage, settextMessage] = useState("");
 
-function close() {
-  setIsOpen(false)
-}
+
+    function close() {
+        setIsOpen(false)
+      }
+
+      async function connectWallet(){
+        try {
+            const resp = await window.solana.connect();
+            key = resp.publicKey.toString();
+            setKeyText(key);
+
+            // 26qv4GCcx98RihuK3c4T6ozB3J7L6VwCuFVc7Ta2A3Uo 
+        } catch (err) {
+            // { code: 4001, message: 'User rejected the request.' }
+        }
+    }
+
+     function disconnect(){
+        window.solana.disconnect();
+    }
+
+    function showModal(text){
+        setIsOpen(true);
+        settextMessage(text);
+    }
+
+
+    window.solana.on("connect", () => showModal("Wallet Connected "));
+    window.solana.on('disconnect', () => {showModal("Wallet Disconnected");setKeyText(null);})
+
+
+
   return (
     <ThemeProvider theme={theme}>
       <Row
@@ -97,16 +125,27 @@ function close() {
                         shadow="1"
                         hoverShadow="2"
                         fontFamily="primary"
-                        onClick={() => setIsOpen(true)}
+                        onClick={connectWallet}
                     >
                         Connect Wallet
+                    </Button>
+
+                    <Button
+                        bg="white"
+                        textColor="gray900"
+                        p={{r: "3rem", l: "3rem"}}
+                        shadow="1"
+                        hoverShadow="2"
+                        fontFamily="primary"
+                        onClick={disconnect}
+                    >
+                        Disconnect Wallet
                     </Button>
                 </Col>
                 <Col size={{xs: 1, lg: 1}}>
 
                 </Col>
             </Row>
-
             <Modal
                 isOpen={isOpen} 
                 onClose={close} 
@@ -114,9 +153,8 @@ function close() {
                 rounded="md" 
                 shadow="1"
                  >
-
-                   ADD TEXT HERE
-
+                     {textMessage}
+                  {keyText != null ? "Key:"+keyText : ""}
             </Modal>
     </ThemeProvider>
     
