@@ -152,9 +152,6 @@ function App() {
                     </Button>
                 </Col>
                 <Col size={{xs: 1, lg: 1}}>
-                    
-                </Col>
-                <Col size={{xs: 1, lg: 1}}>
                     <ButtonComponent connected={isConnected}/>
                 </Col>
             </Row>
