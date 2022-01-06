@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {ThemeProvider, StyleReset} from 'react-atomize';
 
 const theme = {
   colors: {
@@ -14,10 +13,8 @@ const theme = {
 
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-      <StyleReset />
       <App />
-    </ThemeProvider>,
+    ,
   document.getElementById('root')
 );
 

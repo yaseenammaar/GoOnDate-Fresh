@@ -9,7 +9,6 @@ function App() {
     <Text>
       This is h1 of display1 size
     </Text>
-    
   );
 }
 
