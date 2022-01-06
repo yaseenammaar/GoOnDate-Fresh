@@ -21,6 +21,8 @@ import './styles/global.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
+
+
 const theme = {
   ...DefaultTheme,
   grid: {
@@ -30,17 +32,92 @@ const theme = {
   }
 };
 
+var key;
 
-
-
-
+  
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
+  
+    const [isOpen, setIsOpen] = useState(false);
+    const [isConnected, setIsConnected] = useState(false);
 
-function close() {
-  setIsOpen(false)
-}
+    const [keyText, setKeyText] = useState("");
+    const [textMessage, settextMessage] = useState("");
+
+
+    function close() {
+        setIsOpen(false)
+      }
+
+      async function connectWallet(){
+        try {
+            const resp = await window.solana.connect();
+            key = resp.publicKey.toString();
+            setKeyText(key);
+            
+            // 26qv4GCcx98RihuK3c4T6ozB3J7L6VwCuFVc7Ta2A3Uo 
+        } catch (err) {
+            // { code: 4001, message: 'User rejected the request.' }
+        }
+    }
+
+     function disconnect(){
+        window.solana.disconnect();
+    }
+
+    function showModal(text){
+        setIsOpen(true);
+        settextMessage(text);
+    }
+    
+    function ButtonComponent(props){
+        if(props.connected){
+            return (
+                <Button
+                bg="white"
+                textColor="gray900"
+                p={{r: "3rem", l: "3rem"}}
+                shadow="1"
+                hoverShadow="2"
+                fontFamily="primary"
+                onClick={disconnect}
+            >
+                Disconnect Wallet
+            </Button>
+            );
+        }else{
+            return (
+                <Button
+                bg="white"
+                textColor="gray900"
+                p={{r: "3rem", l: "3rem"}}
+                shadow="1"
+                hoverShadow="2"
+                fontFamily="primary"
+                onClick={connectWallet}
+            >
+                Connect Wallet
+            </Button>
+            );
+        }
+       
+    }
+
+
+    window.solana.on("connect", () => {
+        showModal("Wallet Connected ");
+        setIsConnected(true);
+        localStorage.setItem('walletKey', key);
+    });
+    window.solana.on('disconnect', () => {
+        showModal("Wallet Disconnected");
+        setKeyText(null);
+        setIsConnected(false);
+        localStorage.removeItem('walletKey');
+    })
+
+
+
   return (
     <ThemeProvider theme={theme}>
       <Row
@@ -57,7 +134,7 @@ function close() {
                     
                 </Col>
 
-                <Col size={{xs: 3, lg: 6}}>
+                <Col size={{xs: 3, lg: 4}}>
 
                 </Col>
                 <Col size={{xs: 1, lg: 1}}>
@@ -91,24 +168,22 @@ function close() {
                     </Button>
                 </Col>
                 <Col size={{xs: 1, lg: 1}}>
-                    
-                        <Button
-                        bg="white"
+                    <Button
+                        h="2.5rem"
+                        p={{x: "1rem"}}
+                        textSize="body"
                         textColor="gray900"
-                        p={{r: "3rem", l: "3rem"}}
-                        shadow="1"
-                        hoverShadow="2"
+                        bg="white"
                         fontFamily="primary"
-                        onClick={() => setIsOpen(true)}
+                        m={{r: "0.5rem"}}
                     >
-                        Connect Wallet
+                        Mint
                     </Button>
                 </Col>
-                <Col size={{xs: 1, lg: 1}}>
-
+                <Col size={{xs: 1, lg: 2}}>
+                    <ButtonComponent connected={isConnected}/>
                 </Col>
             </Row>
-
             <Modal
                 isOpen={isOpen} 
                 onClose={close} 
@@ -116,9 +191,8 @@ function close() {
                 rounded="md" 
                 shadow="1"
                  >
-
-                   ADD TEXT HERE
-
+                     {textMessage}
+                  {keyText != null ? "Key:"+keyText : ""}
             </Modal>
 
 
@@ -179,7 +253,7 @@ function close() {
    
    
                    </footer>
-
+          
 
 
     </ThemeProvider>
