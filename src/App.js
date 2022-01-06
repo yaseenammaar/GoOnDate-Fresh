@@ -32,6 +32,8 @@ var key;
 function App() {
   
     const [isOpen, setIsOpen] = useState(false);
+    const [isConnected, setIsConnected] = useState(false);
+
     const [keyText, setKeyText] = useState("");
     const [textMessage, settextMessage] = useState("");
 
@@ -45,7 +47,7 @@ function App() {
             const resp = await window.solana.connect();
             key = resp.publicKey.toString();
             setKeyText(key);
-
+            
             // 26qv4GCcx98RihuK3c4T6ozB3J7L6VwCuFVc7Ta2A3Uo 
         } catch (err) {
             // { code: 4001, message: 'User rejected the request.' }
@@ -60,10 +62,43 @@ function App() {
         setIsOpen(true);
         settextMessage(text);
     }
+    
+    function ButtonComponent(props){
+        if(props.connected){
+            return (
+                <Button
+                bg="white"
+                textColor="gray900"
+                p={{r: "3rem", l: "3rem"}}
+                shadow="1"
+                hoverShadow="2"
+                fontFamily="primary"
+                onClick={disconnect}
+            >
+                Disconnect Wallet
+            </Button>
+            );
+        }else{
+            return (
+                <Button
+                bg="white"
+                textColor="gray900"
+                p={{r: "3rem", l: "3rem"}}
+                shadow="1"
+                hoverShadow="2"
+                fontFamily="primary"
+                onClick={connectWallet}
+            >
+                Connect Wallet
+            </Button>
+            );
+        }
+       
+    }
 
 
-    window.solana.on("connect", () => showModal("Wallet Connected "));
-    window.solana.on('disconnect', () => {showModal("Wallet Disconnected");setKeyText(null);})
+    window.solana.on("connect", () => {showModal("Wallet Connected ");setIsConnected(true);});
+    window.solana.on('disconnect', () => {showModal("Wallet Disconnected");setKeyText(null);setIsConnected(false);})
 
 
 
@@ -118,32 +153,9 @@ function App() {
                 </Col>
                 <Col size={{xs: 1, lg: 1}}>
                     
-                        <Button
-                        bg="white"
-                        textColor="gray900"
-                        p={{r: "3rem", l: "3rem"}}
-                        shadow="1"
-                        hoverShadow="2"
-                        fontFamily="primary"
-                        onClick={connectWallet}
-                    >
-                        Connect Wallet
-                    </Button>
-
-                    <Button
-                        bg="white"
-                        textColor="gray900"
-                        p={{r: "3rem", l: "3rem"}}
-                        shadow="1"
-                        hoverShadow="2"
-                        fontFamily="primary"
-                        onClick={disconnect}
-                    >
-                        Disconnect Wallet
-                    </Button>
                 </Col>
                 <Col size={{xs: 1, lg: 1}}>
-
+                    <ButtonComponent connected={isConnected}/>
                 </Col>
             </Row>
             <Modal
