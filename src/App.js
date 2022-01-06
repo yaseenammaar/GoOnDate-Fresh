@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import logo from './logo.svg';
+import logo from './assets/images/god.png';
 import './App.css';
 import {
   ThemeProvider,
@@ -17,6 +17,8 @@ import {
   Anchor
 } from "react-atomize";
 
+import './styles/global.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const theme = {
@@ -48,8 +50,8 @@ function close() {
                 </Col>
                 <Col size={{xs: 1, lg: 1}}>
                     <Image
-                        src=""
-                        h="2rem"
+                        src={logo}
+                        h="3rem"
                         w="auto"
                     />
                     
@@ -118,6 +120,68 @@ function close() {
                    ADD TEXT HERE
 
             </Modal>
+
+
+
+
+
+            <section id="hero" className="container mt-5">
+                <div className="overlay">
+                </div>
+
+                <div className="text-center content">
+                    <h1>Go On a Good Date!</h1>
+                    <p>Make your travel Worth</p>
+
+                </div>
+            </section>
+
+
+
+
+
+
+
+
+
+
+            <footer className="footer container-fluid">
+                   
+                   <div className="container">
+                       <div className="row">
+                           <div className="col-md-6">
+                               <img className="footer-logo" src={logo}/>
+                           </div>
+                           <div className="col-md-2 links">
+                               <h5>Connect With us</h5>
+                               
+                               <li><a href="#" >Instagram</a></li>
+                               <li><a href="#" >Facebook</a></li>
+                               <li><a href="#" >Twitter</a></li>
+                           </div>
+                           <div className="col-md-2 links">
+                               <h5>Get to Know Us</h5>
+                               <li><a href="#" >About Us </a></li>
+                               {/* <li><a href="#" >Careers</a></li>
+                               <li><a href="#" >Press Releases</a></li> */}
+                           </div>
+                           <div className="col-md-2 links">
+                               <h5>Learn</h5>
+                               <li><a href="#" >To Sell </a></li>
+                               <li><a href="#" >To Bid</a></li>
+                           </div>
+                       </div>
+   
+                           <p className="copyright">© 2021 GoOnDate</p>
+   
+                   </div>
+                
+   
+   
+                   </footer>
+
+
+
     </ThemeProvider>
     
   );
