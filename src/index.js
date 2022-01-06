@@ -3,11 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {ThemeProvider, StyleReset} from 'react-atomize';
+
+const theme = {
+  colors: {
+    primary: 'tomato',
+    accent: 'yellow',
+  },
+};
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <ThemeProvider theme={theme}>
+      <StyleReset />
+      <App />
+    </ThemeProvider>,
   document.getElementById('root')
 );
 
