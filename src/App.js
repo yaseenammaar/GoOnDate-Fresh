@@ -1,3 +1,4 @@
+import React, {useEffect, useState} from "react";
 import logo from './logo.svg';
 import './App.css';
 import {
@@ -16,6 +17,8 @@ import {
   Anchor
 } from "react-atomize";
 
+
+
 const theme = {
   ...DefaultTheme,
   grid: {
@@ -28,7 +31,14 @@ const theme = {
 
 
 
+
+
 function App() {
+  const [isOpen, setIsOpen] = useState(false);
+
+function close() {
+  setIsOpen(false)
+}
   return (
     <ThemeProvider theme={theme}>
       <Row
@@ -87,6 +97,7 @@ function App() {
                         shadow="1"
                         hoverShadow="2"
                         fontFamily="primary"
+                        onClick={() => setIsOpen(true)}
                     >
                         Connect Wallet
                     </Button>
@@ -95,6 +106,18 @@ function App() {
 
                 </Col>
             </Row>
+
+            <Modal
+                isOpen={isOpen} 
+                onClose={close} 
+                align="center" 
+                rounded="md" 
+                shadow="1"
+                 >
+
+                   ADD TEXT HERE
+
+            </Modal>
     </ThemeProvider>
     
   );
