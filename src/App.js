@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import logo from './assets/images/god.png';
+import nft from './assets/images/nft.png';
 import './App.css';
 import {
   ThemeProvider,
@@ -21,7 +22,26 @@ import './styles/global.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
+const Card = <Div
+            h="9rem"
+            w="9rem"
+            m="1rem"
+            p={{ x: "1rem" }}
+            shadow="3"
+            hoverShadow="4"
+            rounded="lg"
+            d="inline-block"
+            align="center"
+            justify="center"
+            textColor="medium"
+            textAlign="center"
+            bgImg={nft}
+            bgSize="cover"
+            cursor="pointer"
+            transition
+            >
 
+</Div>;
 
 const theme = {
   ...DefaultTheme,
@@ -33,6 +53,7 @@ const theme = {
 };
 
 var key;
+
 
   
 
@@ -288,8 +309,36 @@ function App() {
                     </Button>
                     </Col>
                     </Row>
-                
-                
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
+                {Card}
                
                 </center>
 
