@@ -184,16 +184,32 @@ function App() {
                     <ButtonComponent connected={isConnected}/>
                 </Col>
             </Row>
-            <Modal
-                isOpen={isOpen} 
-                onClose={close} 
+            {/* <Modal
+                // isOpen={isOpen} 
+                // onClose={close} 
                 align="center" 
                 rounded="md" 
                 shadow="1"
                  >
                      {textMessage}
                   {keyText != null ? "Key:"+keyText : ""}
-            </Modal>
+            </Modal> */}
+
+            <Notification
+            bg={"success700"}
+            isOpen={isOpen}
+            onClose={close} 
+            prefix={
+                <Icon
+                name="Success"
+                color="white"
+                size="18px"
+                m={{ r: "0.5rem" }}
+                />
+            }
+            >
+            {textMessage}
+            </Notification>
 
 
 
@@ -212,9 +228,74 @@ function App() {
 
 
 
+            <section className="container mt-5">
+                <center>
+                <Text tag="span" textSize="display1" m={{ b: "4rem" }}>
+                Grab hold of the dates close to your heart.
+                </Text><br/>
+                <Button
+                    h="2.5rem"
+                    w="8rem"
+                    bg="info600"
+                    hoverBg="info700"
+                    rounded="lg"
+                    m={{ r: "1rem" }}
+                >
+                    Read More
+                </Button>
 
+                <br/>
 
+                <Row
+                 m={{t:"1.5rem"}}>
+                    <Col size={{xs: 0, lg: 3}}>
 
+                    </Col>
+                    <Col size={{xs: 0, lg: 2}}>
+                    <Button
+                        h="2.5rem"
+                        w="8rem"
+                        bg="info600"
+                        hoverBg="info700"
+                        rounded="lg"
+                        m={{ r: "1rem" }}
+                    >
+                        Today's Date
+                    </Button>
+                    </Col>
+                    <Col size={{xs: 0, lg: 2}}>
+                    <Button
+                        h="2.5rem"
+                        w="8rem"
+                        bg="info600"
+                        hoverBg="info700"
+                        rounded="lg"
+                        m={{ r: "1rem" }}
+                    >
+                        Special Dates
+                    </Button>
+                    </Col>
+                    <Col size={{xs: 0, lg: 2}}>
+                    <Button
+                        h="2.5rem"
+                        w="8rem"
+                        bg="info600"
+                        hoverBg="info700"
+                        rounded="lg"
+                        m={{ r: "1rem" }}
+                    >
+                        Skinned Dates
+                    </Button>
+                    </Col>
+                    </Row>
+                
+                
+               
+                </center>
+
+            </section>
+
+            <section className="container mt-5"></section>
 
 
 
@@ -224,34 +305,32 @@ function App() {
                    <div className="container">
                        <div className="row">
                            <div className="col-md-6">
-                               <img className="footer-logo" src={logo}/>
+                               <img className="footer-logo" h="3rem" src={logo}/>
                            </div>
                            <div className="col-md-2 links">
                                <h5>Connect With us</h5>
                                
-                               <li><a href="#" >Instagram</a></li>
-                               <li><a href="#" >Facebook</a></li>
-                               <li><a href="#" >Twitter</a></li>
+                               <li><a href="https://instagram.com/goondate.nft" >Instagram</a></li>
+                               <li><a href="https://twitter.com/GoOnDate" >Twitter</a></li>
+                               <li><a href="https://www.linkedin.com/in/go-on-date-nft-b8b539229/" >LinkedIn</a></li>
+                               <li><a href="https://discord.gg/h95hWP2V" >Discord</a></li>
+                               <li><a href="https://in.pinterest.com/GoOnDate/_saved/" >Pinterest</a></li>
+                               <li><a href="https://t.me/GoOnDateNFT" >Telegram</a></li>
+                               <li><a href="https://www.reddit.com/user/GoOnDate/" >Reddit</a></li>
+                               
                            </div>
                            <div className="col-md-2 links">
                                <h5>Get to Know Us</h5>
-                               <li><a href="#" >About Us </a></li>
+                               <li><a href="#" >About Us</a></li>
                                {/* <li><a href="#" >Careers</a></li>
                                <li><a href="#" >Press Releases</a></li> */}
                            </div>
-                           <div className="col-md-2 links">
-                               <h5>Learn</h5>
-                               <li><a href="#" >To Sell </a></li>
-                               <li><a href="#" >To Bid</a></li>
-                           </div>
+                          
                        </div>
    
                            <p className="copyright">© 2021 GoOnDate</p>
    
                    </div>
-                
-   
-   
                    </footer>
           
 
