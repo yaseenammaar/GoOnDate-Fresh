@@ -12,10 +12,7 @@ import {
   Button,
   Icon,
   Text,
-  Modal,
   Notification,
-  Dropdown,
-  Anchor
 } from "react-atomize";
 
 import './styles/global.scss';
@@ -25,6 +22,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Card = <Div
             h="9rem"
             w="9rem"
+            m="1rem"
+            p={{ x: "1rem" }}
+            shadow="3"
+            hoverShadow="4"
+            rounded="lg"
+            d="inline-block"
+            align="center"
+            justify="center"
+            textColor="medium"
+            textAlign="center"
+            bgImg={nft}
+            bgSize="cover"
+            cursor="pointer"
+            transition
+            ></Div>;
+
+const bigCard = <Div
+            h="30rem"
+            w="30rem"
             m="1rem"
             p={{ x: "1rem" }}
             shadow="3"
@@ -49,93 +65,23 @@ const theme = {
       ...DefaultTheme.grid,
       colCount: 12,
       gutterWidth: 0
-  }
+  },
+  fontFamily:{
+      primary: 'Josefin Sans',
+      secondary: 'Josefin Sans'
+
+  },
+
 };
-
-var key;
-
 
   
 
 function App() {
-  
-    const [isOpen, setIsOpen] = useState(false);
-    const [isConnected, setIsConnected] = useState(false);
 
-    const [keyText, setKeyText] = useState("");
-    const [textMessage, settextMessage] = useState("");
+   
 
 
-    function close() {
-        setIsOpen(false)
-      }
-
-      async function connectWallet(){
-        try {
-            const resp = await window.solana.connect();
-            key = resp.publicKey.toString();
-            setKeyText(key);
-            
-            // 26qv4GCcx98RihuK3c4T6ozB3J7L6VwCuFVc7Ta2A3Uo 
-        } catch (err) {
-            // { code: 4001, message: 'User rejected the request.' }
-        }
-    }
-
-     function disconnect(){
-        window.solana.disconnect();
-    }
-
-    function showModal(text){
-        setIsOpen(true);
-        settextMessage(text);
-    }
-    
-    function ButtonComponent(props){
-        if(props.connected){
-            return (
-                <Button
-                bg="white"
-                textColor="gray900"
-                p={{r: "3rem", l: "3rem"}}
-                shadow="1"
-                hoverShadow="2"
-                fontFamily="primary"
-                onClick={disconnect}
-            >
-                Disconnect Wallet
-            </Button>
-            );
-        }else{
-            return (
-                <Button
-                bg="white"
-                textColor="gray900"
-                p={{r: "3rem", l: "3rem"}}
-                shadow="1"
-                hoverShadow="2"
-                fontFamily="primary"
-                onClick={connectWallet}
-            >
-                Connect Wallet
-            </Button>
-            );
-        }
-       
-    }
-
-
-    window.solana.on("connect", () => {
-        showModal("Wallet Connected ");
-        setIsConnected(true);
-        localStorage.setItem('walletKey', key);
-    });
-    window.solana.on('disconnect', () => {
-        showModal("Wallet Disconnected");
-        setKeyText(null);
-        setIsConnected(false);
-        localStorage.removeItem('walletKey');
-    })
+   
 
 
 
@@ -143,7 +89,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Row
             m={{t:"1.5rem"}}>
-                <Col size={{xs: 0, lg: 1}}>
+                <Col size={{xs: 1, lg: 1}}>
 
                 </Col>
                 <Col size={{xs: 1, lg: 1}}>
@@ -155,10 +101,10 @@ function App() {
                     
                 </Col>
 
-                <Col size={{xs: 3, lg: 4}}>
+                <Col size={{xs: 7, lg: 7}}>
 
                 </Col>
-                <Col size={{xs: 1, lg: 1}}>
+                <Col size={{xs: 2, lg: 1}}>
                     
                              
                         <Button
@@ -168,6 +114,7 @@ function App() {
                             textColor="gray900"
                             bg="white"
                             fontFamily="primary"
+                            hoverShadow="4"
                             m={{r: "0.5rem"}}
                         >
                             About
@@ -180,6 +127,7 @@ function App() {
                         h="2.5rem"
                         p={{x: "1rem"}}
                         textSize="body"
+                        hoverShadow="4"
                         textColor="gray900"
                         bg="white"
                         fontFamily="primary"
@@ -188,22 +136,8 @@ function App() {
                         Contact
                     </Button>
                 </Col>
-                <Col size={{xs: 1, lg: 1}}>
-                    <Button
-                        h="2.5rem"
-                        p={{x: "1rem"}}
-                        textSize="body"
-                        textColor="gray900"
-                        bg="white"
-                        fontFamily="primary"
-                        m={{r: "0.5rem"}}
-                    >
-                        Mint
-                    </Button>
-                </Col>
-                <Col size={{xs: 1, lg: 2}}>
-                    <ButtonComponent connected={isConnected}/>
-                </Col>
+              
+              
             </Row>
             {/* <Modal
                 // isOpen={isOpen} 
@@ -216,21 +150,7 @@ function App() {
                   {keyText != null ? "Key:"+keyText : ""}
             </Modal> */}
 
-            <Notification
-            bg={"success700"}
-            isOpen={isOpen}
-            onClose={close} 
-            prefix={
-                <Icon
-                name="Success"
-                color="white"
-                size="18px"
-                m={{ r: "0.5rem" }}
-                />
-            }
-            >
-            {textMessage}
-            </Notification>
+         
 
 
 
@@ -242,31 +162,34 @@ function App() {
 
                 <div className="text-center content">
                     <h1>Go On a Good Date!</h1>
-                    <p>Make your travel Worth</p>
-
+                    <p>Grab hold of the dates close to your heart</p>
+                    <br/>
+                    <center>
+                    <Button
+                        h="2.5rem"
+                        p={{x: "1rem"}}
+                        textSize="body"
+                        hoverShadow="4"
+                        shadow="3"
+                        textColor="gray100"
+                        bg="info700"
+                        fontFamily="primary"
+                        m={{r: "0.5rem"}}
+                    >
+                        Buy Now
+                    </Button>
+                    </center>
                 </div>
             </section>
 
 
 
-            <section className="container mt-5">
+            <section className="container mt-7">
                 <center>
-                <Text tag="span" textSize="display1" m={{ b: "4rem" }}>
-                Grab hold of the dates close to your heart.
-                </Text><br/>
-                <Button
-                    h="2.5rem"
-                    w="8rem"
-                    bg="info600"
-                    hoverBg="info700"
-                    rounded="lg"
-                    m={{ r: "1rem" }}
-                >
-                    Read More
-                </Button>
-
-                <br/>
-
+                <h2 tag="span" textSize="display1" m={{ b: "4rem" }}>
+                Our Story
+                </h2>
+{/*                 
                 <Row
                  m={{t:"1.5rem"}}>
                     <Col size={{xs: 0, lg: 3}}>
@@ -279,6 +202,7 @@ function App() {
                         bg="info600"
                         hoverBg="info700"
                         rounded="lg"
+                        hoverShadow="4"
                         m={{ r: "1rem" }}
                     >
                         Today's Date
@@ -291,6 +215,7 @@ function App() {
                         bg="info600"
                         hoverBg="info700"
                         rounded="lg"
+                        hoverShadow="4"
                         m={{ r: "1rem" }}
                     >
                         Special Dates
@@ -303,50 +228,108 @@ function App() {
                         bg="info600"
                         hoverBg="info700"
                         rounded="lg"
+                        hoverShadow="4"
                         m={{ r: "1rem" }}
                     >
                         Skinned Dates
                     </Button>
                     </Col>
+                    </Row> */}
+
+<section className="container mt-5">
+                <Row
+                 m={{t:"2rem"}}>
+             
+                    <Col size={{xs: 0, lg: 4}}>
+                    {bigCard}
+                    </Col>
+                    <Col size={{xs: 0, lg: 2}}>
+                    </Col>
+                    <Col size={{xs: 0, lg: 5}} >
+                        <br/>
+                        <br/>
+
+                    <div id="story"> How beautiful is the memory of a loved one! But what remains with us? A picture? A date? Do you remember the date when you last saw them or when you held your baby in your hands for the first time? We feel the same way and it's our desire that you never get loose of the memory that keeps value to you, that is close to your heart. Let's capture those dates together!
+                    <br/><br/>There are some dates in our life that are so important that we want to cherish them forever and own it just for ourselves. We don't want to share it with others but keep it just for us. This is the reason why we came up with this NFT project.
+                    <center><br/>
+                    <Button
+                        h="2.5rem"
+                        p={{x: "1rem"}}
+                        textSize="body"
+                        hoverShadow="4"
+                        textColor="info700"
+                        bg="white"
+                        fontFamily="primary"
+                        m={{r: "0.5rem"}}
+                    >
+                        Know More
+                    </Button>
+                    </center>
+                    
+                    </div>
+
+                    </Col>
                     </Row>
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
-                {Card}
+
+
+                </section>
+
+                
+
+
+                
+                <br/>
+
+                <section className="container mt-5">
+                <h2 tag="span" textSize="display1" m={{ b: "4rem" }}>
+                Some Ultra Premium Dates
+                </h2>
+
+{Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+</section>
+               
+
+                                
+              
+                <section className="container mt-5"></section>
+                <h2 tag="span" textSize="display1" m={{ b: "4rem" }}>
+                Try Our Skins!
+                </h2><br/>
+                <Button
+                    h="2.5rem"
+                    w="8rem"
+                    bg="info600"
+                    hoverBg="info700"
+                    hoverShadow="4"
+                    rounded="lg"
+                    m={{ r: "1rem" }}
+                >
+                    Coming Soon
+                </Button>
                
                 </center>
+
+                <section className="container mt-5">
+                    <center>
+                    <h2 tag="span" textSize="display1" m={{ b: "4rem" }}>Contact Us</h2>
+                    </center>
+
+                    <br/><br/><br/><br/><br/>
+
+
+                </section>
 
                 
 
             </section>
 
-            <section className="container mt-5"></section>
+          
 
 
             <footer className="footer container-fluid">
