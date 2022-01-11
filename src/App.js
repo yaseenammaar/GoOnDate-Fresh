@@ -13,6 +13,7 @@ import {
   Icon,
   Text,
   Notification,
+  Input,
 } from "react-atomize";
 
 import './styles/global.scss';
@@ -39,9 +40,11 @@ const Card = <Div
             ></Div>;
 
 const bigCard = <Div
-            h="30rem"
-            w="30rem"
-            m="1rem"
+            
+            w={{xl:"30rem",lg:"25rem", xs:"25rem"}}
+            h={{xl:"30rem",lg:"25rem", xs:"25rem"}}
+
+             m="1rem"
             p={{ x: "1rem" }}
             shadow="3"
             hoverShadow="4"
@@ -98,12 +101,8 @@ function App() {
                         h="3rem"
                         w="auto"
                     />
-                    
                 </Col>
-
-                <Col size={{xs: 7, lg: 7}}>
-
-                </Col>
+                <Col size={{xs: 6, lg: 6}}>  </Col>
                 <Col size={{xs: 2, lg: 1}}>
                     
                              
@@ -136,6 +135,21 @@ function App() {
                         Contact
                     </Button>
                 </Col>
+
+                <Col size={{xs: 1, lg: 1}}>
+                    <Button
+                        h="2.5rem"
+                        p={{x: "1rem"}}
+                        textSize="body"
+                        hoverShadow="4"
+                        textColor="info500"
+                        bg="white"
+                        fontFamily="primary"
+                        m={{r: "0.5rem"}}
+                    >
+                        Connect
+                    </Button>
+                </Col>
               
               
             </Row>
@@ -161,8 +175,8 @@ function App() {
                 </div>
 
                 <div className="text-center content">
-                    <h1>Go On a Good Date!</h1>
-                    <p>Grab hold of the dates close to your heart</p>
+                    <h1>Today is your day!</h1>
+                    <p>If you feel today is your day, Own it!</p>
                     <br/>
                     <center>
                     <Button
@@ -186,66 +200,67 @@ function App() {
 
             <section className="container mt-7">
                 <center>
+
                 <h2 tag="span" textSize="display1" m={{ b: "4rem" }}>
                 Our Story
                 </h2>
 {/*                 
                 <Row
-                 m={{t:"1.5rem"}}>
-                    <Col size={{xs: 0, lg: 3}}>
-
-                    </Col>
-                    <Col size={{xs: 0, lg: 2}}>
-                    <Button
-                        h="2.5rem"
-                        w="8rem"
-                        bg="info600"
-                        hoverBg="info700"
-                        rounded="lg"
-                        hoverShadow="4"
-                        m={{ r: "1rem" }}
-                    >
-                        Today's Date
-                    </Button>
-                    </Col>
-                    <Col size={{xs: 0, lg: 2}}>
-                    <Button
-                        h="2.5rem"
-                        w="8rem"
-                        bg="info600"
-                        hoverBg="info700"
-                        rounded="lg"
-                        hoverShadow="4"
-                        m={{ r: "1rem" }}
-                    >
-                        Special Dates
-                    </Button>
-                    </Col>
-                    <Col size={{xs: 0, lg: 2}}>
-                    <Button
-                        h="2.5rem"
-                        w="8rem"
-                        bg="info600"
-                        hoverBg="info700"
-                        rounded="lg"
-                        hoverShadow="4"
-                        m={{ r: "1rem" }}
-                    >
-                        Skinned Dates
-                    </Button>
-                    </Col>
-                    </Row> */}
+                m={{t:"1.5rem"}}>
+                <Col size={{xs: 0, lg: 3}}>
+                
+                </Col>
+                <Col size={{xs: 0, lg: 2}}>
+                <Button
+                h="2.5rem"
+                w="8rem"
+                bg="info600"
+                hoverBg="info700"
+                rounded="lg"
+                hoverShadow="4"
+                m={{ r: "1rem" }}
+                >
+                Today's Date
+                </Button>
+                </Col>
+                <Col size={{xs: 0, lg: 2}}>
+                <Button
+                h="2.5rem"
+                w="8rem"
+                bg="info600"
+                hoverBg="info700"
+                rounded="lg"
+                hoverShadow="4"
+                m={{ r: "1rem" }}
+                >
+                Special Dates
+                </Button>
+                </Col>
+                <Col size={{xs: 0, lg: 2}}>
+                <Button
+                h="2.5rem"
+                w="8rem"
+                bg="info600"
+                hoverBg="info700"
+                rounded="lg"
+                hoverShadow="4"
+                m={{ r: "1rem" }}
+                >
+                Skinned Dates
+                </Button>
+                </Col>
+            </Row> */}
 
 <section className="container mt-5">
                 <Row
                  m={{t:"2rem"}}>
              
-                    <Col size={{xs: 0, lg: 4}}>
+                    <Col size={{xs: 12, lg:4, xl:4}}>
                     {bigCard}
                     </Col>
-                    <Col size={{xs: 0, lg: 2}}>
-                    </Col>
-                    <Col size={{xs: 0, lg: 5}} >
+        <Col size={{xs:0, lg: 2}}>
+        </Col>
+                    <Col size={{xs: 12, lg: 6, xl: 5}} >
                         <br/>
                         <br/>
 
@@ -261,7 +276,7 @@ function App() {
                         bg="white"
                         fontFamily="primary"
                         m={{r: "0.5rem"}}
-                    >
+                        >
                         Know More
                     </Button>
                     </center>
@@ -279,13 +294,58 @@ function App() {
 
                 
                 <br/>
-
+                <Input w="30rem" placeholder="Enter Your Date (DD-MM-YYYY)" />
                 <section className="container mt-5">
                 <h2 tag="span" textSize="display1" m={{ b: "4rem" }}>
-                Some Ultra Premium Dates
+                Dates
                 </h2>
 
 {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    <section className="container mt-5"></section>
+    <h2 tag="span" textSize="display1" m={{ b: "4rem" }}>
+                Special Dates
+                </h2>
+
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    {Card}
+    <section className="container mt-5"></section>
+                <h2 tag="span" textSize="display1" m={{ b: "4rem" }}>
+                Skinned Dates
+                </h2>
+
+    {Card}
     {Card}
     {Card}
     {Card}
