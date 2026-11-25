@@ -1,3 +1,4 @@
+// Copyright (c) 2026 Sniff Labs LLC. All rights reserved.
 import React, {useEffect, useState} from "react";
 import logo from './assets/images/god.png';
 import nft from './assets/images/nft.png';
